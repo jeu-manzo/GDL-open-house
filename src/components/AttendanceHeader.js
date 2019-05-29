@@ -12,8 +12,13 @@ class AttendanceHeader extends Component {
   }
 
   componentDidMount(){
+    this.interval = setInterval(this.handleTime, 1000);
     this.handleDate();
     this.handleTime();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   handleTime(){
