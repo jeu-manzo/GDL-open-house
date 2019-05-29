@@ -1,11 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
+import fireBase from '../config/fireBase';
+import Home from './Home';
+import FormLogin from '../components/FormLogin';
 
-const Login = () => {
-    return(
-        <div>
-            <p>Login</p>
-        </div>
-    )
+class Login extends Component {
+  constructor() {
+    super();
+    this.state = ({
+      user: null,
+    });
+    this.authListener = this.authListener.bind(this);
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fireBase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.user ? (
+          <Home />
+        ) :
+          (
+            <FormLogin />
+          )}
+      </div>
+    );
+  }
 }
 
-export default Login;
+ export default Login;
