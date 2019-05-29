@@ -1,9 +1,10 @@
 import React from 'react';
+import Calendar from '../components/Calendar';
 
 const Lists = () => {
     return(
         <div>
-            <p>Lists</p>
+            <Calendar />
         </div>
     )
 }
