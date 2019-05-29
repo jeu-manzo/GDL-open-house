@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import fireBase from '../config/fireBase';
+import fireBase from '../config/FirestoreConfig';
 
 class FormLogin extends Component {
   constructor(props) {

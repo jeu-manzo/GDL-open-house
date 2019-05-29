@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fireBase from '../config/fireBase';
+import fireBase from '../config/FirestoreConfig';
 
 class Home extends Component {
     constructor(props) {
