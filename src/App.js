@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './routerComponents/Home';
 import Attendance from './routerComponents/Attendance';
@@ -11,7 +11,7 @@ import Navigation from './routerComponents/Navigation';
 
 function App() {
     return(
-      <BrowserRouter>
+      <HashRouter>
         <div>
           <Navigation />
             <Switch>
@@ -22,7 +22,7 @@ function App() {
               <Route component={Err} />
             </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     )
 }
 
