@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
+import Navigation from './Navigation';
 import fireBase from '../config/fireBase';
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.logout = this.logout.bind(this);
-    }
-
-
-    logout() {
-        fireBase.auth().signOut();
-    }
-
     render() {
         return (
             <div>
-                <h1>Welcome to Home</h1>
-                <button onClick={this.logout}>Logout</button>
+              <h1>Welcome to Home</h1>
             </div>
         );
 
