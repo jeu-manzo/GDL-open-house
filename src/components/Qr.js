@@ -4,7 +4,7 @@ import Students from '../data/students.json';
 import Check from '../data/check.png';
 import Late from '../data/sad.png';
 
-class Test extends Component {
+class Qr extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -74,4 +74,4 @@ class Test extends Component {
   }
 }
 
-export default Test;
+export default Qr;
