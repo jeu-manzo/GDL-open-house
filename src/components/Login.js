@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import fireBase from '../config/fireBase';
 
 class Login extends Component {
@@ -36,22 +37,18 @@ class Login extends Component {
   }
   render() {
     return (
-      <div className="col-md-6">
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input  value={this.state.email} onChange={this.handleChange} type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input  value={this.state.password} onChange={this.handleChange} type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-          </div>
-          <button type="submit" onClick={this.login} class="btn btn-primary">Login</button>
-          <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
-        </form>
-
-      </div>
+      <Form>
+        <Form.Group  className="form-group">
+          <Form.Label>Correo</Form.Label>
+          <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" className="form-control" placeholder="Enter email" />
+        </Form.Group>
+        <Form.Group  className="form-group">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" placeholder="Password" />
+        </Form.Group >
+        <Button type="submit" onClick={this.login} className="btn btn-primary">Login</Button>
+        <Button onClick={this.signup} className="btn btn-success">Signup</Button>
+      </Form>
     );
   }
 }
