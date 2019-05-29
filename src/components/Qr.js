@@ -32,14 +32,15 @@ class Qr extends Component {
       const student = Students.find(x => x.id === data);
       const greeting = "Hola, " + student.name;
       console.log(greeting);
-      this.handleLate(toString(today.getHours()));
+      this.handleLate(today.getHours(), today.getMinutes());
     }
   }
 
-  handleLate(time){
-    const late = 8;
+  handleLate(hours, minutes){
+    const lateH = 8;
+    const lateM = 10;
     let result = '';
-    if(time.split(0, 2) <= late){
+    if(hours === lateH && minutes <= lateM){
       result = Check;
     }
     else{
@@ -68,7 +69,7 @@ class Qr extends Component {
           onError={this.handleError}
           onScan={this.handleScan}
           />
-        <img src={this.state.result}></img>
+        <img src={this.state.result} ></img>
       </div>
     )
   }
