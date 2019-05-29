@@ -4,7 +4,7 @@ import Qr from '../components/Qr';
 
 const Attendance = () => {
   return(
-    <div>
+    <div className="attendance">
       <AttendanceHeader />
       <Qr />
     </div>
