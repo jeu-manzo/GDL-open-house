@@ -1,10 +1,15 @@
 import React from 'react';
-//import { Navigation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return(
         <div>
-            Navigation
+            <NavLink to='/'>Resumen</NavLink>
+            <NavLink to='/attendance'>Tomar asistencia</NavLink>
+            <NavLink to='/lists'>Listas</NavLink>
+            <NavLink to='/login'>Login</NavLink>
         </div>
     )
 }
+
+export default Navigation;
