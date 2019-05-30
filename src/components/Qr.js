@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import Students from '../data/students.json';
+import Blank from '../data/blank.png';
 import Check from '../data/check.png';
 import Late from '../data/sad.png';
 import '../styles/Attendance.css';
-import db from '../config/FirestoreConfig';
+import firebase from '../config/FirestoreConfig';
 
 class Qr extends Component {
   constructor(props){
@@ -12,7 +13,7 @@ class Qr extends Component {
     this.state = {
       delay: 1500,
       greeting: '',
-      result: '',
+      result: Blank,
       time: ''
     }
 
@@ -28,7 +29,7 @@ class Qr extends Component {
     const time = hours + ':' + (minutes < 10 ? '0' + minutes : minutes);
 
     this.setState({
-      result: data,
+      result: Blank,
       time: time,
       greeting: ''
     })
@@ -42,7 +43,7 @@ class Qr extends Component {
   handleLate(hours, minutes, student){
     const lateH = 8;
     const lateM = 10;
-    let result = '';
+    let result = Blank;
     let attendance = '';
     if(hours === lateH && minutes <= lateM){
       result = Check;
@@ -63,6 +64,8 @@ class Qr extends Component {
   handleSaveData(student, hours, minutes, attendance){
     const time = hours + ":" + minutes;
 
+    let db = firebase.firestore();
+    db.settings({timestampsInSnapshots: true});
     db.collection("users").add({
       name: student,
       time: time,
@@ -91,7 +94,7 @@ class Qr extends Component {
           onScan={this.handleScan}
           />
         <div className="attendance-message">
-          <img className="attendance-img" src={this.state.result} ></img>
+          <img className="attendance-img" src={this.state.result} alt="img"></img>
           <h1 className="attendance-greeting">{this.state.greeting}</h1>
         </div>
       </div>

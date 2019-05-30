@@ -1,5 +1,5 @@
 .attendance {
-  background-color: #282c34;
+  background-color: white;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -27,6 +27,8 @@
 
 .attendance-img {
   margin: auto;
+  height: 300px;
+  width: 300px;
 }
 
 .attendance-greeting {
