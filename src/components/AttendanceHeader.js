@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/Attendance.css';
 
 class AttendanceHeader extends Component {
   constructor(props) {
@@ -12,8 +13,13 @@ class AttendanceHeader extends Component {
   }
 
   componentDidMount(){
+    this.interval = setInterval(this.handleTime, 1000);
     this.handleDate();
     this.handleTime();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   handleTime(){
@@ -34,7 +40,7 @@ class AttendanceHeader extends Component {
     const day = today.getDate();
     const month = today.getMonth();
     const year = today.getFullYear();
-    const date = day + " de " + months[month-1] + ", " + year;
+    const date = day + " de " + months[month] + ", " + year;
 
     this.setState({
       date: "Fecha: " + date
@@ -44,9 +50,9 @@ class AttendanceHeader extends Component {
   render() {
 
     return (
-      <div className="App-header">
-        <h1 className="header">{this.state.date}</h1>
-        <h1 className="header">{this.state.time}</h1>
+      <div>
+        <h1 className="attendance-header">{this.state.date}</h1>
+        <h1 className="attendance-header">{this.state.time}</h1>
       </div>
     );
   }

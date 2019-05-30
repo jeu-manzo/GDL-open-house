@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import Students from '../data/students.json';
+import Blank from '../data/blank.png';
 import Check from '../data/check.png';
 import Late from '../data/sad.png';
+import '../styles/Attendance.css';
+import firebase from '../config/FirestoreConfig';
 
 class Qr extends Component {
   constructor(props){
     super(props)
     this.state = {
       delay: 1500,
-      result: '',
+      greeting: '',
+      result: Blank,
       time: ''
     }
 
     this.handleScan = this.handleScan.bind(this)
     this.handleLate = this.handleLate.bind(this);
+    this.handleSaveData = this.handleSaveData.bind(this);
   }
 
   handleScan(data){
@@ -24,30 +29,50 @@ class Qr extends Component {
     const time = hours + ':' + (minutes < 10 ? '0' + minutes : minutes);
 
     this.setState({
-      result: data,
-      time: time
+      result: Blank,
+      time: time,
+      greeting: ''
     })
 
     if(data !== null){
       const student = Students.find(x => x.id === data);
-      const greeting = "Hola, " + student.name;
-      console.log(greeting);
-      this.handleLate(toString(today.getHours()));
+      this.handleLate(today.getHours(), today.getMinutes(), student);
     }
   }
 
-  handleLate(time){
-    const late = 8;
-    let result = '';
-    if(time.split(0, 2) <= late){
+  handleLate(hours, minutes, student){
+    const lateH = 8;
+    const lateM = 10;
+    let result = Blank;
+    let attendance = '';
+    if(hours === lateH && minutes <= lateM){
       result = Check;
+      attendance = "✅";
     }
     else{
       result = Late;
+      attendance = "⏲️";
     }
+
+    this.handleSaveData(student, hours, minutes, attendance);
     this.setState({
-      result: result
+      result: result,
+      greeting: "Hola, " + student.name
     })
+  }
+
+  handleSaveData(student, hours, minutes, attendance){
+    const time = hours + ":" + minutes;
+
+    let db = firebase.firestore();
+    db.settings({timestampsInSnapshots: true});
+    db.collection("users").add({
+      name: student,
+      time: time,
+      attendance: attendance
+    }).then(() => {
+      console.log('agregado');
+    });
   }
 
   handleError(err){
@@ -61,14 +86,17 @@ class Qr extends Component {
     }
 
     return(
-      <div className="qr">
+      <div className="attendance-qr">
         <QrReader
           delay={this.state.delay}
           style={previewStyle}
           onError={this.handleError}
           onScan={this.handleScan}
           />
-        <img src={this.state.result} alt="index"></img>
+        <div className="attendance-message">
+          <img className="attendance-img" src={this.state.result} alt="img"></img>
+          <h1 className="attendance-greeting">{this.state.greeting}</h1>
+        </div>
       </div>
     )
   }
