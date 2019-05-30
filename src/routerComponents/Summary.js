@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import firebase from '../config/FirestoreConfig';
 import FormLogin from '../components/FormLogin';
 import Navigation from './Navigation';
-import Table from '../components/Table';
 
-class Lists extends Component {
+class Summary extends Component {
   constructor() {
     super();
     this.state = ({
@@ -35,9 +34,8 @@ class Lists extends Component {
       <div className="App">
         {this.state.user ? (
           <div>
-              <Navigation />
-              <h1>Lista de asistencias</h1>
-              <Table />
+            <Navigation />
+            holi
           </div>
         ) :
           (
@@ -48,4 +46,4 @@ class Lists extends Component {
   }
 }
 
-export default Lists;
+ export default Summary;
