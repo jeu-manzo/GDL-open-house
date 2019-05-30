@@ -2,7 +2,7 @@
   "name": "gdl-open-house",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/MelSkywalker/GDL-open-house",
+  "homepage": "https://melskywalker.github.io/GDL-open-house/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "firebase": "^6.1.0",
