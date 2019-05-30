@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Table from '../components/Table';
-import TableTest from '../components/TableTest';
+// import TableTest from '../components/TableTest';
 
 const Lists = () => {
     return(
@@ -9,7 +9,7 @@ const Lists = () => {
             <Navigation />
             <h1>Lista de asistencias</h1>
 
-            <TableTest />
+            <Table />
             {/* <Table /> */}
         </div>
     )
