@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import firebase from '../config/FirestoreConfig';
 import FormLogin from '../components/FormLogin';
 import Navigation from './Navigation';
+import '../styles/Summary.css';
+import '../styles/Navigation.css';
 
 class Summary extends Component {
   constructor() {
@@ -33,9 +35,9 @@ class Summary extends Component {
     return (
       <div className="App">
         {this.state.user ? (
-          <div>
-            <Navigation />
-            holi
+          <div className="summary">
+        <Navigation className="navigation" />
+        <h1 className="summary__header">¡Bienvenidas!</h1>
           </div>
         ) :
           (
@@ -46,4 +48,5 @@ class Summary extends Component {
   }
 }
 
- export default Summary;
+
+export default Summary;

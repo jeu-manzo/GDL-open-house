@@ -4,6 +4,8 @@ import Qr from '../components/Qr';
 import Navigation from './Navigation';
 import firebase from '../config/FirestoreConfig';
 import FormLogin from '../components/FormLogin';
+import '../styles/Summary.css';
+import '../styles/Navigation.css';
 
 class Attendance extends React.Component {
   constructor() {
@@ -35,10 +37,13 @@ class Attendance extends React.Component {
     return (
       <div className="App">
         {this.state.user ? (
-          <div className="attendance">
-            <Navigation />
-            <AttendanceHeader />
-            <Qr />
+          <div className="summary">
+            <Navigation className="navigation"/>
+        <h1 className="summary__header" />
+      </div><div className="summary__blank">
+          <AttendanceHeader />
+          <Qr />
+        </div>
           </div>
         ) :
           (

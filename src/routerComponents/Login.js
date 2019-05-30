@@ -36,8 +36,8 @@ class Login extends Component {
           <Summary />
         ) :
           (
-            <FormLogin />
-          )}
+          <FormLogin />
+        )}
       </div>
     );
   }

@@ -3,6 +3,9 @@ import firebase from '../config/FirestoreConfig';
 import FormLogin from '../components/FormLogin';
 import Navigation from './Navigation';
 import Table from '../components/Table';
+import '../styles/Navigation.css';
+import '../styles/Summary.css';
+import '../styles/Table.css';
 
 class Lists extends Component {
   constructor() {
@@ -34,10 +37,13 @@ class Lists extends Component {
     return (
       <div className="App">
         {this.state.user ? (
-          <div>
-              <Navigation />
-              <h1>Lista de asistencias</h1>
-              <Table />
+          <div className="summary">
+              <Navigation className="navigation"/>
+        <h1 className="summary__header">Lista de asistencias</h1>
+      </div>
+              <div className="table">
+        <Table />
+      </div>
           </div>
         ) :
           (

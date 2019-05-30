@@ -34,6 +34,7 @@ class Qr extends Component {
       greeting: ''
     })
 
+
     if(data !== null){
       const student = Students.find(x => x.id === data);
       this.handleAttendance(today.getHours(), today.getMinutes(), student);
@@ -55,14 +56,10 @@ class Qr extends Component {
       attendance = "⏲️";
     }
 
-    this.handleSaveData(student, time, attendance);
-    this.setState({
-      result: result,
-      greeting: "Hola, " + student.name
-    })
+    this.handleSaveData(student, time, attendance, result);
   }
 
-  handleSaveData(student, time, attendance){
+  handleSaveData(student, time, attendance, result){
     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
       'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const today = new Date();
@@ -71,15 +68,37 @@ class Qr extends Component {
     const month = today.getMonth();
     const year = today.getFullYear();
     const date = day + " de " + months[month] + ", " + year;
-
+    let greeting = "";
     let db = firebase.firestore();
-    db.collection(`${date}`).add({
-      name: student.name,
-      time: ampm,
-      attendance: attendance,
-      notes: "",
-    }).then(() => {
-      console.log('agregado');
+    let docRef = db.collection(`${date}`).doc(`${student.id}`);
+
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        greeting = "Ya registraste tu entrada";
+      } else {
+        greeting = "Hola, " + student.name;
+        db.collection(`${date}`).doc(`${student.id}`).set({
+          name: student.name,
+          time: ampm,
+          attendance: attendance,
+          notes: "",
+        });
+      }
+      return greeting;
+    }).then((greeting) => {
+      if(greeting === "Ya registraste tu entrada"){
+        this.setState({
+          result: Blank,
+          greeting: greeting
+        })
+      } else {
+        this.setState({
+          result: result,
+          greeting: greeting
+        })
+      }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
     });
   }
 
@@ -102,7 +121,9 @@ class Qr extends Component {
           onScan={this.handleScan}
           />
         <div className="attendance-message">
-          <img className="attendance-img" src={this.state.result} alt="img"></img>
+          {this.state.result !== Blank &&
+            <img className="attendance-img" src={this.state.result} alt="img"></img>
+          }
           <h1 className="attendance-greeting">{this.state.greeting}</h1>
         </div>
       </div>
