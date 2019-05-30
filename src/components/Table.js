@@ -15,7 +15,6 @@ export default class Table extends Component {
         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         const today = new Date();
-        // const ampm = time + (today.getHours() >= 12 ? 'pm' : 'am');
         const day = today.getDate();
         const month = today.getMonth();
         const year = today.getFullYear();
@@ -25,7 +24,7 @@ export default class Table extends Component {
             date: '30 de Mayo, 2019'
         })
     }
-    
+
     componentDidMount() {
         this.handleDate();
         console.log(this.state.date);
