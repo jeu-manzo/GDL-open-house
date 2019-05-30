@@ -34,6 +34,7 @@ class Qr extends Component {
       greeting: ''
     })
 
+
     if(data !== null){
       const student = Students.find(x => x.id === data);
       this.handleAttendance(today.getHours(), today.getMinutes(), student);
@@ -71,15 +72,33 @@ class Qr extends Component {
     const month = today.getMonth();
     const year = today.getFullYear();
     const date = day + " de " + months[month] + ", " + year;
-
+    let greeting = "";
     let db = firebase.firestore();
-    db.collection(`${date}`).add({
-      name: student.name,
-      time: ampm,
-      attendance: attendance,
-      notes: "",
-    }).then(() => {
-      console.log('agregado');
+    let docRef = db.collection(`${date}`).doc(`${student.id}`);
+
+    docRef.get().then(function(doc) {
+      if (doc.exists) {
+        greeting = "Ya registraste tu entrada";
+      } else {
+        greeting = "Hola, " + student.name;
+        db.collection(`${date}`).doc(`${student.id}`).set({
+          name: student.name,
+          time: ampm,
+          attendance: attendance,
+          notes: "",
+        }).then(() => {
+          console.log(greeting);
+        });
+      }
+      return greeting;
+    }).then((x) => {
+      console.log(x);
+      this.setState({
+        result: Blank,
+        greeting: greeting
+      })
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
     });
   }
 
