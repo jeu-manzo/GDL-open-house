@@ -1,19 +1,19 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './routerComponents/Home';
 import Attendance from './routerComponents/Attendance';
 import Lists from './routerComponents/List';
 import Login from './routerComponents/Login';
 import Err from './routerComponents/Err';
-import Navigation from './routerComponents/Navigation';
+// import Navigation from './routerComponents/Navigation';
 
 function App() {
     return(
-      <BrowserRouter>
+      <HashRouter>
         <div>
-          <Navigation />
+            {/* <Navigation /> */}
             <Switch>
               <Route path='/' component={Home} exact/>
               <Route path='/attendance' component={Attendance} />
@@ -22,7 +22,7 @@ function App() {
               <Route component={Err} />
             </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     )
 }
 
