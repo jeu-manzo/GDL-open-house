@@ -4,7 +4,8 @@ import Calendar from '../components/Calendar';
 const Lists = () => {
     return(
         <div>
-            <Calendar />
+            <p>Listas</p>
+            {/* <Calendar /> */}
         </div>
     )
 }
