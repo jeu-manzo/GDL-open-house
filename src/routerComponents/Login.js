@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../config/FirestoreConfig';
-import Home from './Home';
+import Summary from './Summary';
 import FormLogin from '../components/FormLogin';
 
 class Login extends Component {
@@ -33,11 +33,11 @@ class Login extends Component {
     return (
       <div className="App">
         {this.state.user ? (
-          <Home />
-        ) :
+          <Summary />
+          ) :
           (
-            <FormLogin />
-          )}
+          <FormLogin />
+        )}
       </div>
     );
   }

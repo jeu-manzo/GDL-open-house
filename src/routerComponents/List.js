@@ -1,21 +1,22 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Table from '../components/Table';
-// import TableTest from '../components/TableTest';
+import '../styles/Navigation.css';
+import '../styles/Summary.css';
+import '../styles/Table.css';
 
 const Lists = () => {
-    return(
-        <div>
-            <Navigation />
-            <h1>Lista de asistencias</h1>
-            <table>
-                <tbody>
-                <Table />
-                </tbody>
-            </table>
-            {/* <Table /> */}
-        </div>
-    )
+  return(
+    <div>
+      <div className="summary">
+        <Navigation className="navigation"/>
+        <h1 className="summary__header">Lista de asistencias</h1>
+      </div>
+      <div className="table">
+        <Table />
+      </div>
+    </div>
+  )
 }
 
 export default Lists;
