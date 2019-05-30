@@ -12,7 +12,4 @@ firebase.initializeApp({
   appId: "1:539577824127:web:54cde4175442c0b1"
 });
 
-let db = firebase.firestore();
-db.settings({timestampsInSnapshots: true});
-
-export default db;
+export default firebase;
