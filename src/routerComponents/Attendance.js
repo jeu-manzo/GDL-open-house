@@ -4,7 +4,11 @@ import Qr from '../components/Qr';
 import Navigation from './Navigation';
 
 
-const Attendance = () => {
+class Attendance extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render(){
   return(
     <div className="attendance">
       <Navigation />
@@ -12,6 +16,7 @@ const Attendance = () => {
       <Qr />
     </div>
   )
+}
 }
 
 export default Attendance;

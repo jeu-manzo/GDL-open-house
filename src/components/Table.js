@@ -11,7 +11,7 @@ export default class Table extends Component {
         };
     }
 
-    handleDate= () => {
+    componentDidMount() {
         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         const today = new Date();
@@ -19,16 +19,9 @@ export default class Table extends Component {
         const month = today.getMonth();
         const year = today.getFullYear();
         const date = day + " de " + months[month] + ", " + year;
-        console.log(date);
-        this.setState({
-            date: '30 de Mayo, 2019'
-        })
-    }
-
-    componentDidMount() {
-        this.handleDate();
-        console.log(this.state.date);
-        firebase.firestore().collection(this.state.date).get()
+        // console.log(date);
+        // console.log(this.state.date);
+        firebase.firestore().collection(date).get()
         .then(querySnapshot => {
             let students = [];
             querySnapshot.forEach( doc => {
@@ -48,9 +41,9 @@ export default class Table extends Component {
 
     render() {
         return(
-            this.state.students.map(student => {
+            this.state.students.map((student, i) => {
                 return (
-                    <tr>
+                    <tr key={student.name + i}>
                         <td>{student.name}</td>
                         <td>{student.attendance}</td>
                         <td>{student.time}</td>

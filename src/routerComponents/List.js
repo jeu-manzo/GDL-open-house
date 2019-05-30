@@ -8,8 +8,11 @@ const Lists = () => {
         <div>
             <Navigation />
             <h1>Lista de asistencias</h1>
-
-            <Table />
+            <table>
+                <tbody>
+                <Table />
+                </tbody>
+            </table>
             {/* <Table /> */}
         </div>
     )

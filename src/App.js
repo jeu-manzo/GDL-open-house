@@ -9,7 +9,14 @@ import Login from './routerComponents/Login';
 import Err from './routerComponents/Err';
 // import Navigation from './routerComponents/Navigation';
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      change: 0,
+    }
+  }
+  render() {
     return(
       <HashRouter>
         <div>
@@ -24,6 +31,7 @@ function App() {
         </div>
       </HashRouter>
     )
+  }
 }
 
 export default App;
