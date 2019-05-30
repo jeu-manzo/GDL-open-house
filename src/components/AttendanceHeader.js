@@ -40,7 +40,7 @@ class AttendanceHeader extends Component {
     const day = today.getDate();
     const month = today.getMonth();
     const year = today.getFullYear();
-    const date = day + " de " + months[month-1] + ", " + year;
+    const date = day + " de " + months[month] + ", " + year;
 
     this.setState({
       date: "Fecha: " + date
