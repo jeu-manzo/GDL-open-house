@@ -7,13 +7,13 @@ import Attendance from './routerComponents/Attendance';
 import Lists from './routerComponents/List';
 import Login from './routerComponents/Login';
 import Err from './routerComponents/Err';
-import Navigation from './routerComponents/Navigation';
+// import Navigation from './routerComponents/Navigation';
 
 function App() {
     return(
       <HashRouter>
         <div>
-          <Navigation />
+            {/* <Navigation /> */}
             <Switch>
               <Route path='/' component={Home} exact/>
               <Route path='/attendance' component={Attendance} />
