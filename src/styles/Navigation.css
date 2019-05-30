@@ -1,0 +1,14 @@
+.navigation {
+  font-size: 20px;
+}
+
+.navigation a {
+  background-color: #FFE421;
+  border-radius: 0px 0px 20px 10px;
+  border-color: grey;
+  border-style: solid;
+  border-left: none;
+  color: black;
+  padding: 20px 30px;
+  margin: 0;
+}
