@@ -56,14 +56,10 @@ class Qr extends Component {
       attendance = "⏲️";
     }
 
-    this.handleSaveData(student, time, attendance);
-    this.setState({
-      result: result,
-      greeting: "Hola, " + student.name
-    })
+    this.handleSaveData(student, time, attendance, result);
   }
 
-  handleSaveData(student, time, attendance){
+  handleSaveData(student, time, attendance, result){
     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
       'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const today = new Date();
@@ -76,7 +72,7 @@ class Qr extends Component {
     let db = firebase.firestore();
     let docRef = db.collection(`${date}`).doc(`${student.id}`);
 
-    docRef.get().then(function(doc) {
+    docRef.get().then((doc) => {
       if (doc.exists) {
         greeting = "Ya registraste tu entrada";
       } else {
@@ -86,17 +82,21 @@ class Qr extends Component {
           time: ampm,
           attendance: attendance,
           notes: "",
-        }).then(() => {
-          console.log(greeting);
         });
       }
       return greeting;
-    }).then((x) => {
-      console.log(x);
-      this.setState({
-        result: Blank,
-        greeting: greeting
-      })
+    }).then((greeting) => {
+      if(greeting === "Ya registraste tu entrada"){
+        this.setState({
+          result: Blank,
+          greeting: greeting
+        })
+      } else {
+        this.setState({
+          result: result,
+          greeting: greeting
+        })
+      }
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
