@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fireBase from '../config/fireBase';
+import db from '../config/fireBase';
 import { NavLink } from 'react-router-dom';
 
 class LogOut extends Component {
@@ -10,12 +10,12 @@ class LogOut extends Component {
 
 
     logout() {
-        fireBase.auth().signOut();
+        db.auth().signOut();
     }
 
     render() {
         return (
-          <NavLink onClick={this.logout}>Cerrar Sesión</NavLink>
+          <NavLink to='/' onClick={this.logout}>Cerrar Sesión</NavLink>
         )
     }
 

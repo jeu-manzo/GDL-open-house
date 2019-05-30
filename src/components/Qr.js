@@ -68,7 +68,7 @@ class Qr extends Component {
           onError={this.handleError}
           onScan={this.handleScan}
           />
-        <img src={this.state.result}></img>
+        <img src={this.state.result} alt="index"></img>
       </div>
     )
   }
