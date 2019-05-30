@@ -2,27 +2,62 @@ import React, { Component } from 'react';
 import firebase from '../config/FirestoreConfig';
 import Students from '../data/students.json';
 
-export default class Table extends Component {
-  render() {
-    return(
-      <table>
-        <thead>
-          <tr>
-            <th>Estudiante</th>
-            <th>Hora</th>
-            <th>Estatus</th>
-            <th>Nota</th>
-          </tr>
-          {Students.filter(student => {
-              return student.role === 'student'
-          }).map(student => {
-              return <tr key={student.id}><td>{student.name}</td></tr>
-          })}
-          {/* {firebase.firestore().collection('users').onSnapshot(snapshot => {
-              console.log(snapshot)
-;                    })} */}
-        </thead>
-      </table>
-    )
-  }
+export default class Table extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            students: [],
+            date: null
+        };
+    }
+
+    handleDate= () => {
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const today = new Date();
+        const day = today.getDate();
+        const month = today.getMonth();
+        const year = today.getFullYear();
+        const date = day + " de " + months[month] + ", " + year;
+        console.log(date);
+        this.setState({
+            date: '30 de Mayo, 2019'
+        })
+    }
+
+    componentDidMount() {
+        this.handleDate();
+        console.log(this.state.date);
+        firebase.firestore().collection(this.state.date).get()
+        .then(querySnapshot => {
+            let students = [];
+            querySnapshot.forEach( doc => {
+                let { name, attendance, time, notes } = doc.data();
+                students.push({
+                    name,
+                    time,
+                    attendance,
+                    notes
+                });
+            });
+            this.setState({
+                students
+            });
+        });
+    }
+
+    render() {
+        return(
+            this.state.students.map(student => {
+                return (
+                    <tr>
+                        <td>{student.name}</td>
+                        <td>{student.attendance}</td>
+                        <td>{student.time}</td>
+                        <td>{student.notes}</td>
+                    </tr>
+                )
+            })
+        )
+    }
 }
