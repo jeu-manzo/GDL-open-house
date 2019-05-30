@@ -5,7 +5,7 @@ import Blank from '../data/blank.png';
 import Check from '../data/check.png';
 import Late from '../data/sad.png';
 import '../styles/Attendance.css';
-import db from '../config/FirestoreConfig';
+import firebase from '../config/FirestoreConfig';
 
 class Qr extends Component {
   constructor(props){
@@ -64,6 +64,8 @@ class Qr extends Component {
   handleSaveData(student, hours, minutes, attendance){
     const time = hours + ":" + minutes;
 
+    let db = firebase.firestore();
+    db.settings({timestampsInSnapshots: true});
     db.collection("users").add({
       name: student,
       time: time,
