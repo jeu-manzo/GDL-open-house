@@ -29,7 +29,7 @@ class AttendanceHeader extends Component {
     const minutes = today.getMinutes();
     const time = hours + ':' + (minutes < 10 ? '0' + minutes + ampm : minutes + ampm);
     this.setState({
-      time: "Hora: " + time
+      time: time
     })
   }
 
@@ -51,8 +51,8 @@ class AttendanceHeader extends Component {
 
     return (
       <div>
-        <h1 className="attendance-header">{this.state.date}</h1>
-        <h1 className="attendance-header">{this.state.time}</h1>
+        <h1 className="attendance-date">{this.state.date}</h1>
+        <h1 className="attendance-time">{this.state.time}</h1>
       </div>
     );
   }
