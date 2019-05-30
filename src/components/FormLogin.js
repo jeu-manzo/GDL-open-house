@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import fireBase from '../config/fireBase';
+import firebase from '../config/FirestoreConfig';
 
 class FormLogin extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class FormLogin extends Component {
 
   login(e) {
     e.preventDefault();
-    fireBase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).catch((error) => {
         console.log(error);
       });
@@ -29,7 +29,7 @@ class FormLogin extends Component {
 
   signup(e){
     e.preventDefault();
-    fireBase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then((u)=>{console.log(u)})
     .catch((error) => {
         console.log(error);

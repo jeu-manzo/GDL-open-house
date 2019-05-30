@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fireBase from '../config/fireBase';
+import firebase from '../config/FirestoreConfig';
 import Home from './Home';
 import FormLogin from '../components/FormLogin';
 
@@ -17,7 +17,7 @@ class Login extends Component {
   }
 
   authListener() {
-    fireBase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       console.log(user);
       if (user) {
         this.setState({ user });
