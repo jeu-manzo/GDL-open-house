@@ -7,7 +7,6 @@ import FormLogin from '../components/FormLogin';
 import '../styles/Summary.css';
 import '../styles/Navigation.css';
 
-
 export default class Attendance extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +36,12 @@ export default class Attendance extends Component {
     return (
       <div className="App">
         {this.state.user ? (
-          <div className="attendance">
+          <div className="summary">
             <Navigation className="navigation"/>
-            <AttendanceHeader />
-            <Qr />
+            <div className="summary__blank">
+              <AttendanceHeader />
+              <Qr />
+            </div>
           </div>
         ) :
           (

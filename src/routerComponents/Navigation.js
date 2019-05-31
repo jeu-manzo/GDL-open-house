@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import firebase from '../config/FirestoreConfig';
+import '../styles/Navigation.css';
 
 export default class Navigation extends Component {
     logout = () => {
@@ -8,7 +9,7 @@ export default class Navigation extends Component {
     }
     render() {
         return(
-            <div>
+            <div className="navigation">
                 <NavLink to='/'>Resumen</NavLink>
                 <NavLink to='/attendance'>Tomar asistencia</NavLink>
                 <NavLink to='/lists'>Listas</NavLink>

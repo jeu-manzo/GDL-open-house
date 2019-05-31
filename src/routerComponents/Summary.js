@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../config/FirestoreConfig';
 import FormLogin from '../components/FormLogin';
 import Navigation from './Navigation';
+import SummaryModules from '../components/SummaryModules';
 import '../styles/Summary.css';
 import '../styles/Navigation.css';
 
@@ -38,6 +39,7 @@ export default class Summary extends Component {
             <Navigation className="navigation" />
             <h1 className="summary__header">¡Bienvenidas!</h1>
           </div>
+          <SummaryModules />
         ) : (
           <FormLogin />
         )}
