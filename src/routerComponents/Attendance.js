@@ -6,7 +6,11 @@ import '../styles/Summary.css';
 import '../styles/Navigation.css';
 
 
-const Attendance = () => {
+class Attendance extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render(){
   return(
     <div>
       <div className="summary">
@@ -21,6 +25,7 @@ const Attendance = () => {
       </div>
     </div>
   )
+}
 }
 
 export default Attendance;

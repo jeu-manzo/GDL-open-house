@@ -10,21 +10,29 @@ import Err from './routerComponents/Err';
 import './styles/Navigation.css';
 // import Navigation from './routerComponents/Navigation';
 
-function App() {
-  return(
-    <HashRouter className="router">
-      <div className="navigation">
-        {/* <Navigation /> */}
-        <Switch>
-          <Route path='/' component={Summary} exact/>
-          <Route path='/attendance' component={Attendance} />
-          <Route path='/lists' component={Lists} />
-          <Route path='/login' component={Login} />
-          <Route component={Err} />
-        </Switch>
-      </div>
-    </HashRouter>
-  )
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      change: 0,
+    }
+  }
+  render() {
+    return(
+      <HashRouter>
+        <div>
+            {/* <Navigation /> */}
+            <Switch>
+              <Route path='/' component={Summary} exact/>
+              <Route path='/attendance' component={Attendance} />
+              <Route path='/lists' component={Lists} />
+              <Route path='/login' component={Login} />
+              <Route component={Err} />
+            </Switch>
+        </div>
+      </HashRouter>
+    )
+  }
 }
 
 export default App;
