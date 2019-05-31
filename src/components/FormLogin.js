@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import firebase from '../config/FirestoreConfig';
+import { NavLink } from 'react-router-dom';
 
 class FormLogin extends Component {
   constructor(props) {
@@ -48,6 +49,9 @@ class FormLogin extends Component {
         </Form.Group >
         <Button type="submit" onClick={this.login} className="btn btn-primary">Login</Button>
         <Button onClick={this.signup} className="btn btn-success">Signup</Button>
+        <div>
+          <NavLink to='/reset-password'>Olvidé mi contraseña</NavLink>
+        </div>
       </Form>
     );
   }
