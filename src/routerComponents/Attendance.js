@@ -1,28 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AttendanceHeader from '../components/AttendanceHeader';
 import Qr from '../components/Qr';
 import Navigation from './Navigation';
+import firebase from '../config/FirestoreConfig';
+import FormLogin from '../components/FormLogin';
 import '../styles/Summary.css';
 import '../styles/Navigation.css';
 
+export default class Attendance extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
+  }
 
-class Attendance extends React.Component {
-  render(){
-  return(
-    <div>
-      <div className="summary">
-        <Navigation className="navigation"/>
-        <h1 className="summary__header" />
-      </div>
-      <div>
-        <div className="summary__blank">
-          <AttendanceHeader />
-          <Qr />
-        </div>
-      </div>
-    </div>
-  )
-}
-}
+  componentDidMount() {
+    this.authListener();
+  }
 
-export default Attendance;
+  authListener = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.user ? (
+          <div className="summary">
+            <Navigation className="navigation"/>
+            <div className="summary__blank">
+              <AttendanceHeader />
+              <Qr />
+            </div>
+          </div>
+        ) :
+          (
+            <FormLogin />
+          )}
+      </div>
+    );
+  }
+}
