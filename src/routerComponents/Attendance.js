@@ -7,9 +7,6 @@ import '../styles/Navigation.css';
 
 
 class Attendance extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render(){
   return(
     <div>
