@@ -11,7 +11,7 @@ class Qr extends Component {
   constructor(props){
     super(props)
     this.state = {
-      delay: 1500,
+      delay: 2500,
       greeting: '',
       result: Blank,
       time: ''

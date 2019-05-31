@@ -8,8 +8,10 @@ export default class SummaryModules extends Component {
     super(props)
     this.state = {
       studentsTotal: 0,
-      lates: [1, 2, 3, 4],
-      assistance: [1, 2, 3, 4],
+      lates: 4,
+      // lates: [1, 2, 3, 4],
+      assistance: 4,
+      // assistance: [1, 2, 3, 4],
       absences: [],
       total: 0
     };
@@ -58,9 +60,9 @@ export default class SummaryModules extends Component {
     return (
       <div className="summary__blank">
         <div className="summary__modules">
-          <h1>Hoy llegaron <p>{this.state.assistance.length} de {this.state.studentsTotal.length - 4}</p> estudiantes</h1>
+          <h1>Hoy llegaron <p>{this.state.assistance} de {this.state.studentsTotal.length - 4}</p> estudiantes</h1>
           <h1>Ausencias <p>{this.state.absences.length}</p></h1>
-          <h1>Retardos <p>{this.state.lates.length}</p></h1>
+          <h1>Retardos <p>{this.state.lates}</p></h1>
           <h1>Drop out <p>3</p></h1>
         </div>
         <img className="summary__img" src={Laboratoria} />
