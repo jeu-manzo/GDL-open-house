@@ -1,0 +1,46 @@
+.attendance {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+}
+
+.attendance-date {
+  background-color: white;
+  font-size: 30px;
+  margin: 0;
+  text-align: center;
+}
+
+.attendance-time {
+  background-color: white;
+  font-size: 40px;
+  margin: 0;
+  text-align: center;
+}
+
+.attendance-qr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 20px;
+  padding: 0 10vw;
+  margin-top: 30px;
+  height: 50vh;
+}
+
+.attendance-message {
+  margin: auto;
+  text-align: center;
+}
+
+.attendance-img {
+  margin: auto;
+  height: 300px;
+  width: 300px;
+}
+
+.attendance-greeting {
+  color: black;
+}

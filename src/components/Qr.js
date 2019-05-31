@@ -18,7 +18,7 @@ class Qr extends Component {
     }
 
     this.handleScan = this.handleScan.bind(this)
-    this.handleLate = this.handleLate.bind(this);
+    this.handleAttendance = this.handleAttendance.bind(this);
     this.handleSaveData = this.handleSaveData.bind(this);
   }
 
@@ -34,15 +34,17 @@ class Qr extends Component {
       greeting: ''
     })
 
+
     if(data !== null){
       const student = Students.find(x => x.id === data);
-      this.handleLate(today.getHours(), today.getMinutes(), student);
+      this.handleAttendance(today.getHours(), today.getMinutes(), student);
     }
   }
 
-  handleLate(hours, minutes, student){
+  handleAttendance(hours, minutes, student){
     const lateH = 8;
     const lateM = 10;
+    const time = hours + ':' + (minutes < 10 ? '0' + minutes : minutes);
     let result = Blank;
     let attendance = '';
     if(hours === lateH && minutes <= lateM){
@@ -54,24 +56,49 @@ class Qr extends Component {
       attendance = "⏲️";
     }
 
-    this.handleSaveData(student, hours, minutes, attendance);
-    this.setState({
-      result: result,
-      greeting: "Hola, " + student.name
-    })
+    this.handleSaveData(student, time, attendance, result);
   }
 
-  handleSaveData(student, hours, minutes, attendance){
-    const time = hours + ":" + minutes;
-
+  handleSaveData(student, time, attendance, result){
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const today = new Date();
+    const ampm = time + (today.getHours() >= 12 ? 'pm' : 'am');
+    const day = today.getDate();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    const date = day + " de " + months[month] + ", " + year;
+    let greeting = "";
     let db = firebase.firestore();
-    db.settings({timestampsInSnapshots: true});
-    db.collection("users").add({
-      name: student,
-      time: time,
-      attendance: attendance
-    }).then(() => {
-      console.log('agregado');
+    let docRef = db.collection(`${date}`).doc(`${student.id}`);
+
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        greeting = "Ya registraste tu entrada";
+      } else {
+        greeting = "Hola, " + student.name;
+        db.collection(`${date}`).doc(`${student.id}`).set({
+          name: student.name,
+          time: ampm,
+          attendance: attendance,
+          notes: "",
+        });
+      }
+      return greeting;
+    }).then((greeting) => {
+      if(greeting === "Ya registraste tu entrada"){
+        this.setState({
+          result: Blank,
+          greeting: greeting
+        })
+      } else {
+        this.setState({
+          result: result,
+          greeting: greeting
+        })
+      }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
     });
   }
 
@@ -94,7 +121,9 @@ class Qr extends Component {
           onScan={this.handleScan}
           />
         <div className="attendance-message">
-          <img className="attendance-img" src={this.state.result} alt="img"></img>
+          {this.state.result !== Blank &&
+            <img className="attendance-img" src={this.state.result} alt="img"></img>
+          }
           <h1 className="attendance-greeting">{this.state.greeting}</h1>
         </div>
       </div>

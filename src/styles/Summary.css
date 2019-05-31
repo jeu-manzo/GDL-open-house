@@ -1,0 +1,16 @@
+.summary {
+  background-color: #FFE421;
+  text-align: center;
+}
+
+.summary__blank{
+  /* background-color: #E9EBEE; */
+}
+
+.summary__header {
+  background-color: white;
+  font-size: 40px;
+  margin: 0;
+  margin-top: 20px;
+  padding: 20px;
+}
