@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-
+import Email from './routerComponents/Email';
 import Summary from './routerComponents/Summary';
 import Attendance from './routerComponents/Attendance';
 import Lists from './routerComponents/List';
@@ -27,6 +27,7 @@ class App extends React.Component {
               <Route path='/attendance' component={Attendance} />
               <Route path='/lists' component={Lists} />
               <Route path='/login' component={Login} />
+              <Route path='/reset-password' component={Email} />
               <Route component={Err} />
             </Switch>
         </div>

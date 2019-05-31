@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import firebase from '../config/FirestoreConfig';
+import { NavLink } from 'react-router-dom';
 
 class FormLogin extends Component {
   constructor(props) {
@@ -21,33 +22,36 @@ class FormLogin extends Component {
 
   login(e) {
     e.preventDefault();
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
     }).catch((error) => {
-        console.log(error);
-      });
+      console.log(error);
+    });
   }
 
-  signup(e){
+  signup(e) {
     e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-    }).then((u)=>{console.log(u)})
-    .catch((error) => {
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+    }).then((u) => { console.log(u) })
+      .catch((error) => {
         console.log(error);
       })
   }
   render() {
     return (
       <Form>
-        <Form.Group  className="form-group">
+        <Form.Group className="form-group">
           <Form.Label>Correo</Form.Label>
           <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" className="form-control" placeholder="Enter email" />
         </Form.Group>
-        <Form.Group  className="form-group">
+        <Form.Group className="form-group">
           <Form.Label>Contraseña</Form.Label>
           <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" placeholder="Password" />
         </Form.Group >
         <Button type="submit" onClick={this.login} className="btn btn-primary">Login</Button>
         <Button onClick={this.signup} className="btn btn-success">Signup</Button>
+        <div>
+          <NavLink to='/reset-password'>Olvidé mi contraseña</NavLink>
+        </div>
       </Form>
     );
   }

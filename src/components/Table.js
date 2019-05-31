@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../config/FirestoreConfig';
-import Students from '../data/students.json';
+// import registerServiceWorker from '../serviceWorker';
+// import Dropdown from '../components/Dropdown';
 
 export default class Table extends Component {
     constructor(props) {

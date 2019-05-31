@@ -19,9 +19,9 @@ export default class Summary extends Component {
   }
 
   authListener = () => {
-    firebase.auth().onAuthStateChanged( user => {
+    firebase.auth().onAuthStateChanged(user => {
       console.log(user);
-      if(user) {
+      if (user) {
         this.setState({ user });
         localStorage.setItem('user', user.uid);
       } else {
@@ -32,17 +32,17 @@ export default class Summary extends Component {
   }
 
   render() {
-    return(
+    return (
       <div className='App'>
         {this.state.user ? (
           <div className="summary">
             <Navigation className="navigation" />
             <h1 className="summary__header">¡Bienvenidas!</h1>
+            <SummaryModules />
           </div>
-          <SummaryModules />
         ) : (
-          <FormLogin />
-        )}
+            <FormLogin />
+          )}
       </div>
     )
   }
