@@ -43,7 +43,7 @@ export default class Table extends Component {
         return(
             this.state.students.map((student, i) => {
                 return (
-                    <tr key={student.name + i}>
+                    <tr key={student.name + '_' + i}>
                         <td>{student.name}</td>
                         <td>{student.attendance}</td>
                         <td>{student.time}</td>

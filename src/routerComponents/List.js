@@ -9,8 +9,16 @@ const Lists = () => {
             <Navigation />
             <h1>Lista de asistencias</h1>
             <table>
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Estatus</th>
+                        <th>Hora</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
                 <tbody>
-                <Table />
+                    <Table />
                 </tbody>
             </table>
             {/* <Table /> */}
