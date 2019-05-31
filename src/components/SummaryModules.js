@@ -8,9 +8,9 @@ export default class SummaryModules extends Component {
     super(props)
     this.state = {
       studentsTotal: 0,
-      lates: 4,
+      lates: 3,
       // lates: [1, 2, 3, 4],
-      assistance: 4,
+      assistance: 3,
       // assistance: [1, 2, 3, 4],
       absences: [],
       total: 0
