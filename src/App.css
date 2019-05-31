@@ -1,18 +1,31 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root, .div-app {
+height: 100%;
+}
+
+
 .App {
-  text-align: center;
+text-align: center;
+display: flex;
+justify-content: center;
+height: 100%;
+background-color: #FFE521;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: white;
 }
 
 .App-link {
-  color: #61dafb;
+color: #61dafb;
 }

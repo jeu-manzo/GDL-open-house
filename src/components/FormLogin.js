@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import firebase from '../config/FirestoreConfig';
 import { NavLink } from 'react-router-dom';
+import '../styles/Login.css';
 
 class FormLogin extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class FormLogin extends Component {
   }
   render() {
     return (
-      <Form>
+      <Form className="form-form">
         <Form.Group className="form-group">
           <Form.Label>Correo</Form.Label>
           <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" className="form-control" placeholder="Enter email" />
@@ -47,10 +48,10 @@ class FormLogin extends Component {
           <Form.Label>Contraseña</Form.Label>
           <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" placeholder="Password" />
         </Form.Group >
-        <Button type="submit" onClick={this.login} className="btn btn-primary">Login</Button>
-        <Button onClick={this.signup} className="btn btn-success">Signup</Button>
+        <Button type="submit" onClick={this.login} className="btn btn-primary btn-login" size="lg">Iniciar Sesión</Button>
+        <Button onClick={this.signup} className="btn btn-success btn-signup" size="lg">Crear Cuenta</Button>
         <div>
-          <NavLink to='/reset-password'>Olvidé mi contraseña</NavLink>
+          <NavLink to='/reset-password' className="password-link">Olvidé mi contraseña</NavLink>
         </div>
       </Form>
     );

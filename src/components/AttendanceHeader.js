@@ -51,6 +51,7 @@ class AttendanceHeader extends Component {
 
     return (
       <div>
+        <br />
         <h1 className="attendance-date">{this.state.date}</h1>
         <h1 className="attendance-time">{this.state.time}</h1>
       </div>

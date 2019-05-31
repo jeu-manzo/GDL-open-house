@@ -20,7 +20,7 @@ class App extends React.Component {
   render() {
     return(
       <HashRouter>
-        <div>
+        <div className="div-app">
             {/* <Navigation /> */}
             <Switch>
               <Route path='/' component={Summary} exact/>

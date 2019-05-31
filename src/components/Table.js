@@ -48,7 +48,7 @@ export default class Table extends Component {
                         <td>{student.name}</td>
                         <td>{student.attendance}</td>
                         <td>{student.time}</td>
-                        <td>{student.notes}</td>
+                        {/* <td>{student.notes}</td> */}
                     </tr>
                 )
             })

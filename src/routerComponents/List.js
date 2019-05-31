@@ -38,14 +38,15 @@ export default class Lists extends Component {
                 {this.state.user ? (
                     <div>
                         <Navigation  className="navigation"/>
-                        <h1>Lista de asistencias</h1>
+                        <br/>
+                        <h1 className="lists">Lista de asistencias</h1>
                         <table>
                             <thead>
                                 <tr>
                                     <th>Estudiante</th>
                                     <th>Estatus</th>
                                     <th>Hora</th>
-                                    <th>Notas</th>
+                                    {/* <th>Notas</th> */}
                                 </tr>
                             </thead>
                             <tbody>
