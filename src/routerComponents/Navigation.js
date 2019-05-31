@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import firebase from '../config/FirestoreConfig';
-class Navigation extends React.Component {
+
+export default class Navigation extends Component {
     logout = () => {
         firebase.auth().signOut();
     }
@@ -16,5 +17,3 @@ class Navigation extends React.Component {
         )
     }
 }
-
-export default Navigation;
