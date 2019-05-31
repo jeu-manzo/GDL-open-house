@@ -3,49 +3,60 @@ import firebase from '../config/FirestoreConfig';
 import FormLogin from '../components/FormLogin';
 import Navigation from './Navigation';
 import Table from '../components/Table';
+import '../styles/Navigation.css';
+import '../styles/Summary.css';
+import '../styles/Table.css';
 
-class Lists extends Component {
-  constructor() {
-    super();
-    this.state = ({
-      user: null,
-    });
-    this.authListener = this.authListener.bind(this);
-  }
+export default class Lists extends Component {
+    constructor(props) {
+        super(props);
+        this.state = ({
+            user: null
+        });
+    }
 
-  componentDidMount() {
-    this.authListener();
-  }
+    componentDidMount() {
+        this.authListener();
+    }
 
-  authListener() {
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem('user', user.uid);
-      } else {
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-      }
-    });
-  }
+    authListener = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            console.log(user);
+            if (user) {
+                this.setState({ user });
+                localStorage.setItem('user', user.uid);
+            } else {
+                this.setState({ user: null });
+                localStorage.removeItem('user');
+            }
+        });
+    }
 
-  render() {
-    return (
-      <div className="App">
-        {this.state.user ? (
-          <div>
-              <Navigation />
-              <h1>Lista de asistencias</h1>
-              <Table />
-          </div>
-        ) :
-          (
-            <FormLogin />
-          )}
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                {this.state.user ? (
+                    <div>
+                        <Navigation  className="navigation"/>
+                        <h1>Lista de asistencias</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Estudiante</th>
+                                    <th>Estatus</th>
+                                    <th>Hora</th>
+                                    <th>Notas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <Table />
+                            </tbody>
+                        </table>
+                    </div>
+                ) : (
+                    <FormLogin />
+                )}
+            </div>
+        )
+    }
 }
-
-export default Lists;

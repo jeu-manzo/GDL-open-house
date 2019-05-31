@@ -3,13 +3,12 @@ import firebase from '../config/FirestoreConfig';
 import Summary from './Summary';
 import FormLogin from '../components/FormLogin';
 
-class Login extends Component {
+export default class Login extends Component {
   constructor() {
     super();
     this.state = ({
       user: null,
     });
-    this.authListener = this.authListener.bind(this);
   }
 
   componentDidMount() {
@@ -34,13 +33,11 @@ class Login extends Component {
       <div className="App">
         {this.state.user ? (
           <Summary />
-        ) :
+          ) :
           (
-            <FormLogin />
-          )}
+          <FormLogin />
+        )}
       </div>
     );
   }
 }
-
- export default Login;

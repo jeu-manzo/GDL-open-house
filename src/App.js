@@ -2,30 +2,39 @@
 import React from 'react';
 import './App.css';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-
-import Summary from './routerComponents/Summary';
 import Email from './routerComponents/Email';
+import Summary from './routerComponents/Summary';
 import Attendance from './routerComponents/Attendance';
 import Lists from './routerComponents/List';
 import Login from './routerComponents/Login';
 import Err from './routerComponents/Err';
+import './styles/Navigation.css';
+// import Navigation from './routerComponents/Navigation';
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      change: 0,
+    }
+  }
+  render() {
     return(
       <HashRouter>
         <div>
+            {/* <Navigation /> */}
             <Switch>
               <Route path='/' component={Summary} exact/>
-              <Route path='/attendance' component={Attendance} exact />
-              <Route path='/lists' component={Lists} exact/>
-              <Route path='/login' component={Login} exact/>
-              <Route path='/summary' component={Summary} exact/>
-              <Route path='/reset-password' component={Email} exact/>
+              <Route path='/attendance' component={Attendance} />
+              <Route path='/lists' component={Lists} />
+              <Route path='/login' component={Login} />
+              <Route path='/reset-password' component={Email} />
               <Route component={Err} />
             </Switch>
         </div>
       </HashRouter>
     )
+  }
 }
 
 export default App;
